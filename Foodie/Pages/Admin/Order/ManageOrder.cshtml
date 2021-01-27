@@ -1,0 +1,81 @@
+﻿@page
+@model Foodie.Pages.Admin.Order.ManageOrderModel
+@using Foodie.Utility
+@{
+    ViewData["Title"] = "ManageOrder";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-primary py-3">Manage Order's</h1>
+<form method="post">
+
+    @if (Model.OrderDetailsListVM.Count > 0)
+    {
+        <div class="container row bg-white p-2 border mb-3 rounded">
+            @foreach (var orderDetail in Model.OrderDetailsListVM)
+            {
+                <div class="col-12 pb-3 pt-3 mt-4 border  rounded">
+
+                    <div class="backgroundWhiteBorder10Padding">
+
+                        <div class="row">
+                            <div class="col-4">
+                                Order Number : @orderDetail.OrderHeader.Id
+                                <ul class="text-info">
+                                    @foreach (var item in orderDetail.OrderDetails)
+                                    {
+                                        <li>@item.Name x @item.Count</li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-4 pb-2">
+                                <div class="input-group pb-2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Time</span>
+                                    </div>
+                                    <input type="text" class="border rounded form-control" readonly value="@orderDetail.OrderHeader.PickUpTime" />
+                                </div>
+
+                                <textarea asp-for="@orderDetail.OrderHeader.Comments" readonly class="rounded border form-control" style="width:100%;height:75px;"></textarea>
+                            </div>
+                            <div class="col-3 offset-1 d-flex align-content-center">
+                                <div class="col-12">
+
+                                    @if (orderDetail.OrderHeader.Status.Equals(SD.StatusSubmitted))
+                                    {
+                                        <button type="submit" class="btn btn-primary form-control mb-3" asp-page-handler="OrderPrepare" asp-route-orderId="@orderDetail.OrderHeader.Id">
+                                            <i class="fas fa-check"></i> &nbsp; Start Cooking
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        if (orderDetail.OrderHeader.Status.Equals(SD.StatusInProcess))
+                                        {
+                                            <button type="submit" class="btn btn-success form-control mb-3" asp-page-handler="OrderReady" asp-route-orderId="@orderDetail.OrderHeader.Id">
+                                                <i class="fas fa-flag-checkered"></i> &nbsp; Order Ready
+                                            </button>
+                                        }
+                                    }
+
+                                    <button type="submit" class="btn btn-warning form-control mb-3" asp-page-handler="OrderCancel" asp-route-orderId="@orderDetail.OrderHeader.Id">
+                                        <i class="fas fa-times"></i> &nbsp; Cancel Order
+                                    </button>
+                                    <button type="submit" class="btn btn-danger form-control mb-3" asp-page-handler="OrderRefund" asp-route-orderId="@orderDetail.OrderHeader.Id">
+                                        <i class="fas fa-times"></i> &nbsp; Refund Order
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h2>There are no orders to manage...</h2>
+    }
+
+
+</form>
+

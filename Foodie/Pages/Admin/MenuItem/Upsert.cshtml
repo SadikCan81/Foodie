@@ -1,0 +1,127 @@
+﻿@page
+@model Foodie.Pages.Admin.MenuItem.UpsertModel
+@{
+    ViewData["Title"] = "Upsert";
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhite border">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            @if (Model.menuItemObj.MenuItem.Id != 0)
+            {
+                <input type="hidden" asp-for="menuItemObj.MenuItem.Id" />
+            }
+
+            <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-primary">Menu Item</h2>
+            </div>
+
+            <div class="col-8 pt-3">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="menuItemObj.MenuItem.Name"></label>
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control" asp-for="menuItemObj.MenuItem.Name" />
+                        <span asp-validation-for="menuItemObj.MenuItem.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="menuItemObj.MenuItem.Price"></label>
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control" asp-for="menuItemObj.MenuItem.Price" />
+                        <span asp-validation-for="menuItemObj.MenuItem.Price" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="menuItemObj.MenuItem.Description"></label>
+                    </div>
+                    <div class="col-9">
+                        <textarea asp-for="menuItemObj.MenuItem.Description" class="form-control" id="txtDescription" style="height:200px;"> </textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Category</label>
+                    </div>
+                    <div class="col-9">
+                        <select asp-for="menuItemObj.MenuItem.CategoryId" asp-items="Model.menuItemObj.CategoryList" class="form-control">
+                            <option value="" hidden selected>Choose a category</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="menuItemObj.MenuItem.CategoryId"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Category</label>
+                    </div>
+                    <div class="col-9">
+                        <select asp-for="menuItemObj.MenuItem.FoodTypeId" asp-items="Model.menuItemObj.FoodTypeList" class="form-control">
+                            <option value="" hidden selected>Choose a food type</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="menuItemObj.MenuItem.FoodTypeId"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="menuItemObj.MenuItem.Image"></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="file" name="files" id="uploadBox" accept="image/*" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+                                @if (Model.menuItemObj.MenuItem.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" onclick="return ValidateInput()" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-success form-control">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.menuItemObj.MenuItem.Id != 0)
+            {
+                <div class="col-4 p-4">
+                    <img src="@Model.menuItemObj.MenuItem.Image" width="100%" style="border-radius:5px; border:1px solid #bbb9b9;" />
+                </div>
+            }
+        </div>
+    </div>
+</form>
+
+
+
+
+@section Scripts{
+    <script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: "lists",
+        menubar: 'file edit format'
+    });
+
+    function ValidateInput() {
+        if (document.getElementById("uploadBox").value == "") {
+            swal("Error", "Please select an image!","error");
+            return false;
+        }
+        return true;
+    }
+    </script>
+}

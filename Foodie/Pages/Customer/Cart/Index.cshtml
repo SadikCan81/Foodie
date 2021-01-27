@@ -1,0 +1,95 @@
+﻿@page
+@model Foodie.Pages.Customer.Cart.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+
+    <br />
+    @if (Model.OrderDetailsCartVM.ShoppingCartList.Count > 0)
+    {
+
+        <input asp-for="@Model.OrderDetailsCartVM.ShoppingCartList[0].ApplicationUserId" type="hidden"/>
+        <div class="backgroundWhiteBorder">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header bg-dark text-light ml-0 row container">
+                        <div class="col-6">
+                            <i class="fa fa-shopping-cart"></i> &nbsp;
+                            Shopping Cart
+                        </div>
+                        <div class="col-6 text-right">
+                            <a class="btn btn-outline-info btn-sm" asp-page="/Customer/Home/Index">Continue Shopping</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var shoppingCart in Model.OrderDetailsCartVM.ShoppingCartList)
+                        {
+                            <div class="row">
+                                <div class="d-none d-lg-block col-lg-2 text-center py-2">
+                                    <img src="@shoppingCart.MenuItem.Image" class="rounded" width="120" height="80" />
+                                </div>
+                                <div class="col-12 text-sm-center col-lg-5 text-lg-left">
+                                    <h4><strong>@shoppingCart.MenuItem.Name</strong></h4>
+                                </div>
+                                <div class="col-12 text-sm-center col-lg-5 text-lg-right row">
+                                    <div class="col-4 text-md-right" style="padding-top:5px;">
+                                        <h6><strong>$ @shoppingCart.MenuItem.Price <span class="text-muted">x</span> @shoppingCart.Count</strong></h6>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-lg-6">
+                                        <div class="float-right mx-1">
+                                            <button type="submit" class="btn btn-primary" asp-page-handler="plus" asp-route-cartId="@shoppingCart.Id">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="float-right mx-1">
+                                            <button type="submit" class="btn btn-danger" asp-page-handler="minus" asp-route-cartId="@shoppingCart.Id">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-sm-4 col-lg-2 text-right">
+                                        <button type="submit" class="btn btn-outline-danger" asp-page-handler="remove" asp-route-cartId="@shoppingCart.Id">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                        }
+
+                        <div class="row">
+                            <div class="col-12 col-md-5">
+
+                            </div>
+                            <div class="col-12 col-md-6 offset-md-1 col-lg-4 offset-lg-3 pr-4">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <span class="text-info"> Total (USD)</span>
+                                        <strong class="text-info">$ <span id="txtOrderTotal">@Model.OrderDetailsCartVM.OrderHeader.OrderTotal.ToString("0.00")</span></strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
+                            <a class="btn btn-success form-control" asp-page="Summary">Summary</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div>
+            <h3>Please add items to your shopping cart.</h3>
+        </div>
+    }
+</form>
+

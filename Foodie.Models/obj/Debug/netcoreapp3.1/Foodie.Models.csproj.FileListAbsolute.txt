@@ -1,0 +1,8 @@
+C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Models\bin\Debug\netcoreapp3.1\Foodie.Models.deps.json
+C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Models\bin\Debug\netcoreapp3.1\Foodie.Models.dll
+C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Models\bin\Debug\netcoreapp3.1\Foodie.Models.pdb
+C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Models\obj\Debug\netcoreapp3.1\Foodie.Models.csprojAssemblyReference.cache
+C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Models\obj\Debug\netcoreapp3.1\Foodie.Models.AssemblyInfoInputs.cache
+C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Models\obj\Debug\netcoreapp3.1\Foodie.Models.AssemblyInfo.cs
+C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Models\obj\Debug\netcoreapp3.1\Foodie.Models.dll
+C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Models\obj\Debug\netcoreapp3.1\Foodie.Models.pdb
