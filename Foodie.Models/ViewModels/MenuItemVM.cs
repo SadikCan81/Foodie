@@ -9,6 +9,10 @@ namespace Foodie.Models.ViewModels
     {
         public MenuItem MenuItem { get; set; }
 
+        public List<Inventory> InventoryList { get; set; }
+
+        public List<MenuItemInventoryVM> MenuItemInventories { get; set; }
+
         public IEnumerable<SelectListItem> CategoryList { get; set; }
 
         public IEnumerable<SelectListItem> FoodTypeList { get; set; }

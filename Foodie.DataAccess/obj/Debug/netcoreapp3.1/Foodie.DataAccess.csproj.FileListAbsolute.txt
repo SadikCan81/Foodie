@@ -11,3 +11,17 @@ C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.DataAccess\obj\De
 C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.csproj.CopyComplete
 C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.dll
 C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.pdb
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\bin\Debug\netcoreapp3.1\Foodie.DataAccess.deps.json
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\bin\Debug\netcoreapp3.1\Foodie.DataAccess.dll
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\bin\Debug\netcoreapp3.1\Foodie.DataAccess.pdb
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\bin\Debug\netcoreapp3.1\Foodie.Models.dll
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\bin\Debug\netcoreapp3.1\Foodie.Utility.dll
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\bin\Debug\netcoreapp3.1\Foodie.Models.pdb
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\bin\Debug\netcoreapp3.1\Foodie.Utility.pdb
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.csprojAssemblyReference.cache
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.AssemblyInfoInputs.cache
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.AssemblyInfo.cs
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.csproj.CopyComplete
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.dll
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.DataAccess\obj\Debug\netcoreapp3.1\Foodie.DataAccess.pdb

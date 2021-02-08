@@ -6,3 +6,12 @@ C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Utility\obj\Debug
 C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.AssemblyInfo.cs
 C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.dll
 C:\Users\sadik\Desktop\.Net Core Projects\Foodie\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.pdb
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\bin\Debug\netcoreapp3.1\Foodie.Utility.deps.json
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\bin\Debug\netcoreapp3.1\Foodie.Utility.dll
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\bin\Debug\netcoreapp3.1\Foodie.Utility.pdb
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.csprojAssemblyReference.cache
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.AssemblyInfoInputs.cache
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.AssemblyInfo.cs
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.csproj.CoreCompileInputs.cache
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.dll
+C:\Users\sadik\Desktop\FoodieForGithub\Foodie\Foodie.Utility\obj\Debug\netcoreapp3.1\Foodie.Utility.pdb

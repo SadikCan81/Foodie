@@ -27,5 +27,11 @@ namespace Foodie.DataAccess
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         
         public DbSet<OrderDetail> OrderDetails { get; set; }
+
+        public DbSet<UnitType> UnitTypes { get; set; }
+
+        public DbSet<Inventory> Inventories { get; set; }
+
+        public DbSet<MenuItemInventory> MenuItemInventories { get; set; }
     }
 }

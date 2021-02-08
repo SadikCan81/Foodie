@@ -34,12 +34,31 @@ namespace Foodie.Pages.Admin.MenuItem
             {
                 CategoryList = _unitOfWork.Category.GetCategoryListForDropdown(),
                 FoodTypeList = _unitOfWork.FoodType.GetFoodTypeListForDropdown(),
-                MenuItem = new Models.MenuItem()
+                MenuItem = new Models.MenuItem(),
+                InventoryList = _unitOfWork.Inventory.GetAll(includeProperties: "UnitType").ToList(),
+                MenuItemInventories = new List<MenuItemInventoryVM>()
             };
 
             if (id != null)
             {
                 menuItemObj.MenuItem = _unitOfWork.MenuItem.GetFirstOrDefault(x => x.Id == id);
+                //SQL LEFT JOIN Duzenle????!!!
+
+                menuItemObj.MenuItemInventories = (from inventory in _unitOfWork.Inventory.GetAll(includeProperties: "UnitType")
+                                                  join menuItemInventory in _unitOfWork.MenuItemInventory.GetAll()
+                                                  on inventory.Id equals menuItemInventory.InventoryId into fmInventory
+                                                  from fullMenuInventory in fmInventory.DefaultIfEmpty()
+                                                  where ((fullMenuInventory == null ? 0 : fullMenuInventory.MenuItemId) == id) || ((fullMenuInventory == null ? 0 : fullMenuInventory.Quantity) == 0)
+                                                  select new MenuItemInventoryVM()
+                                                  {
+                                                      MenuItemInventoryId = fullMenuInventory == null ? 0 : fullMenuInventory.Id,
+                                                      InventoryId = inventory.Id,
+                                                      MenuItemId = fullMenuInventory == null ? 0 : fullMenuInventory.MenuItemId,
+                                                      InventoryName = inventory.Name,
+                                                      UnitTypeName = inventory.UnitType.Name,
+                                                      Quantity = fullMenuInventory == null ? 0 : fullMenuInventory.Quantity
+                                                  }).ToList();
+  
                 if (menuItemObj.MenuItem == null)
                 {
                     return NotFound();
@@ -55,12 +74,28 @@ namespace Foodie.Pages.Admin.MenuItem
             {
                 menuItemObj.CategoryList = _unitOfWork.Category.GetCategoryListForDropdown();
                 menuItemObj.FoodTypeList = _unitOfWork.FoodType.GetFoodTypeListForDropdown();
+                menuItemObj.InventoryList = _unitOfWork.Inventory.GetAll(includeProperties: "UnitType").ToList();                
+                menuItemObj.MenuItemInventories = (from inventory in _unitOfWork.Inventory.GetAll(includeProperties: "UnitType")
+                                                   join menuItemInventory in _unitOfWork.MenuItemInventory.GetAll()
+                                                   on inventory.Id equals menuItemInventory.InventoryId into fmInventory
+                                                   from fullMenuInventory in fmInventory.DefaultIfEmpty()
+                                                   where ((fullMenuInventory == null ? 0 : fullMenuInventory.MenuItemId) == menuItemObj.MenuItem.Id) || ((fullMenuInventory == null ? 0 : fullMenuInventory.Quantity) == 0)
+                                                   select new MenuItemInventoryVM()
+                                                   {
+                                                       MenuItemInventoryId = fullMenuInventory == null ? 0 : fullMenuInventory.Id,
+                                                       InventoryId = inventory.Id,
+                                                       MenuItemId = fullMenuInventory == null ? 0 : fullMenuInventory.MenuItemId,
+                                                       InventoryName = inventory.Name,
+                                                       UnitTypeName = inventory.UnitType.Name,
+                                                       Quantity = fullMenuInventory == null ? 0 : fullMenuInventory.Quantity
+                                                   }).ToList();
 
                 return Page();
             }
 
             string webRootPath = _hostingEnvironment.WebRootPath;
             var files = HttpContext.Request.Form.Files;
+            var AreChecked = Request.Form["AreChecked"].ToList();
 
             if (menuItemObj.MenuItem.Id == 0)
             {
@@ -76,6 +111,19 @@ namespace Foodie.Pages.Admin.MenuItem
                 menuItemObj.MenuItem.Image = @"\images\menuItems\" + fileName + extension;
 
                 _unitOfWork.MenuItem.Add(menuItemObj.MenuItem);
+                _unitOfWork.Save();
+
+                foreach (var item in menuItemObj.InventoryList.Where(x=> x.Quantity > 0))
+                {
+                    var menuItemInventory = new Models.MenuItemInventory();
+                    
+                    menuItemInventory.InventoryId = item.Id;
+                    menuItemInventory.MenuItemId = menuItemObj.MenuItem.Id;
+                    menuItemInventory.Quantity = item.Quantity;
+
+                    _unitOfWork.MenuItemInventory.Add(menuItemInventory);
+                }
+
             }
 
             else
@@ -112,6 +160,33 @@ namespace Foodie.Pages.Admin.MenuItem
                 }
 
                 _unitOfWork.MenuItem.Update(menuItemObj.MenuItem);
+
+                foreach (var item in menuItemObj.MenuItemInventories)
+                {
+                    if(item.MenuItemInventoryId != null && item.MenuItemInventoryId > 0)
+                    {
+                        var menuItemInventoryFromDb = _unitOfWork.MenuItemInventory.GetFirstOrDefault(x => x.Id == item.MenuItemInventoryId);
+                        if(menuItemInventoryFromDb != null && menuItemInventoryFromDb.Quantity != item.Quantity)
+                        {
+                            menuItemInventoryFromDb.Quantity = item.Quantity.GetValueOrDefault();
+                            _unitOfWork.MenuItemInventory.Update(menuItemInventoryFromDb);
+                        }                        
+                    }
+                    else
+                    {
+                        if (item.Quantity > 0)
+                        {
+                            var menuItemInventoryObj = new Models.MenuItemInventory()
+                            {
+                                MenuItemId = menuItemObj.MenuItem.Id,
+                                InventoryId = item.InventoryId.GetValueOrDefault(),
+                                Quantity = item.Quantity.GetValueOrDefault()
+                            };
+
+                            _unitOfWork.MenuItemInventory.Add(menuItemInventoryObj);
+                        }
+                    }
+                }
             }
 
             _unitOfWork.Save();

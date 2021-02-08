@@ -20,6 +20,12 @@ namespace Foodie.DataAccess.Data.Repository.IRepository
 
         IOrderDetailRepository OrderDetail { get; }
 
+        IUnitTypeRepository UnitType { get; }
+
+        IInventoryRepository Inventory { get; }
+
+        IMenuItemInventoryRepository MenuItemInventory { get; }
+
         void Save();
     }
 }

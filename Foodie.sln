@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodie", "Foodie\Foodie.csproj", "{0C0A6ABD-6ACD-4EEE-81F0-9DF1E8D6D803}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foodie", "Foodie\Foodie.csproj", "{0C0A6ABD-6ACD-4EEE-81F0-9DF1E8D6D803}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodie.DataAccess", "Foodie.DataAccess\Foodie.DataAccess.csproj", "{E8CBE958-410F-428F-8B2A-1E455008F1D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foodie.DataAccess", "Foodie.DataAccess\Foodie.DataAccess.csproj", "{E8CBE958-410F-428F-8B2A-1E455008F1D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodie.Models", "Foodie.Models\Foodie.Models.csproj", "{54433423-5657-447C-A13B-676516BF74AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foodie.Models", "Foodie.Models\Foodie.Models.csproj", "{54433423-5657-447C-A13B-676516BF74AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodie.Utility", "Foodie.Utility\Foodie.Utility.csproj", "{8D4DB66F-1A81-46B4-B377-9F733AE800F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foodie.Utility", "Foodie.Utility\Foodie.Utility.csproj", "{8D4DB66F-1A81-46B4-B377-9F733AE800F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

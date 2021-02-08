@@ -54,6 +54,30 @@ namespace Foodie.DataAccess.Migrations
                     b.ToTable("FoodTypes");
                 });
 
+            modelBuilder.Entity("Foodie.Models.Inventory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
+
+                    b.Property<int>("UnitTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UnitTypeId");
+
+                    b.ToTable("Inventories");
+                });
+
             modelBuilder.Entity("Foodie.Models.MenuItem", b =>
                 {
                     b.Property<int>("Id")
@@ -89,6 +113,31 @@ namespace Foodie.DataAccess.Migrations
                     b.ToTable("MenuItems");
                 });
 
+            modelBuilder.Entity("Foodie.Models.MenuItemInventory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("InventoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MenuItemId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InventoryId");
+
+                    b.HasIndex("MenuItemId");
+
+                    b.ToTable("MenuItemInventories");
+                });
+
             modelBuilder.Entity("Foodie.Models.OrderDetail", b =>
                 {
                     b.Property<int>("Id")
@@ -107,6 +156,9 @@ namespace Foodie.DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("OrderHeaderId")
                         .HasColumnType("int");
@@ -191,6 +243,25 @@ namespace Foodie.DataAccess.Migrations
                     b.HasIndex("MenuItemId");
 
                     b.ToTable("ShoppingCarts");
+                });
+
+            modelBuilder.Entity("Foodie.Models.UnitType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UnitTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -408,6 +479,15 @@ namespace Foodie.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
+            modelBuilder.Entity("Foodie.Models.Inventory", b =>
+                {
+                    b.HasOne("Foodie.Models.UnitType", "UnitType")
+                        .WithMany()
+                        .HasForeignKey("UnitTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Foodie.Models.MenuItem", b =>
                 {
                     b.HasOne("Foodie.Models.Category", "Category")
@@ -419,6 +499,21 @@ namespace Foodie.DataAccess.Migrations
                     b.HasOne("Foodie.Models.FoodType", "FoodType")
                         .WithMany()
                         .HasForeignKey("FoodTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Foodie.Models.MenuItemInventory", b =>
+                {
+                    b.HasOne("Foodie.Models.Inventory", "Inventory")
+                        .WithMany()
+                        .HasForeignKey("InventoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Foodie.Models.MenuItem", "MenuItem")
+                        .WithMany()
+                        .HasForeignKey("MenuItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

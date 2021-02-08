@@ -1,5 +1,6 @@
 ﻿using Foodie.DataAccess.Data.Repository.IRepository;
 using Foodie.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,15 @@ namespace Foodie.DataAccess.Data.Repository
         public MenuItemRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public IEnumerable<SelectListItem> GetMenuItemListForDropdown()
+        {
+            return _db.MenuItems.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            });
         }
 
         public void Update(MenuItem menuItem)

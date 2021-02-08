@@ -75,6 +75,52 @@
                         <input type="file" name="files" id="uploadBox" accept="image/*" class="form-control" />
                     </div>
                 </div>
+                @if (Model.menuItemObj.MenuItemInventories.Count == 0)
+                {
+                    @for (int i = 0; i < Model.menuItemObj.InventoryList.Count; i++)
+                    {
+                        <div class="form-group row">
+                            <div class="col-3">
+                                <label>@Model.menuItemObj.InventoryList[i].Name</label>
+                            </div>
+                            <div class="col-6">
+                                <label>Quantity</label>
+                                <input asp-for="@Model.menuItemObj.InventoryList[i].Quantity" value="0" />
+                                <input asp-for="@Model.menuItemObj.InventoryList[i].Id" type="hidden" />
+                                <input asp-for="@Model.menuItemObj.InventoryList[i].Name" type="hidden" />
+                                <input asp-for="@Model.menuItemObj.InventoryList[i].UnitTypeId" type="hidden" />
+                            </div>
+                            <div class="col-3">
+                                <label>Unit Type:</label>
+                                <label>@Model.menuItemObj.InventoryList[i].UnitType.Name</label>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    @for (int i = 0; i < Model.menuItemObj.MenuItemInventories.Count; i++)
+                    {
+                        <div class="form-group row">
+                            <div class="col-3">
+                                <label>@Model.menuItemObj.MenuItemInventories[i].InventoryName</label>
+                            </div>
+                            <div class="col-6">
+                                <label>Quantity</label>
+                                <input asp-for="@Model.menuItemObj.MenuItemInventories[i].Quantity" />
+                                <input asp-for="@Model.menuItemObj.MenuItemInventories[i].InventoryId" type="hidden" />
+                                <input asp-for="@Model.menuItemObj.MenuItemInventories[i].MenuItemId" type="hidden" />
+                                <input asp-for="@Model.menuItemObj.MenuItemInventories[i].MenuItemInventoryId" type="hidden" />
+                            </div>
+                            <div class="col-3">
+                                <label>Unit Type:</label>
+                                <label>@Model.menuItemObj.MenuItemInventories[i].UnitTypeName</label>
+                            </div>
+                        </div>
+                    }
+                }
+
+
                 <div class="form-group row">
                     <div class="col-9 offset-3">
                         <div class="row">
@@ -110,18 +156,20 @@
 
 @section Scripts{
     <script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: "lists",
-        menubar: 'file edit format'
-    });
+        tinymce.init({
+            selector: 'textarea',
+            plugins: "lists",
+            menubar: 'file edit format'
+        });
 
-    function ValidateInput() {
-        if (document.getElementById("uploadBox").value == "") {
-            swal("Error", "Please select an image!","error");
-            return false;
+        function ValidateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal("Error", "Please select an image!", "error");
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
     </script>
+
+    <partial name="_ValidationScriptsPartial" />
 }

@@ -31,5 +31,7 @@ namespace Foodie.Models
 
         [Required]
         public double Price { get; set; }
+
+        public DateTime OrderDate { get; set; }
     }
 }

@@ -92,7 +92,8 @@ namespace Foodie.Pages.Customer.Cart
                     Name = shoppingCart.MenuItem.Name,
                     Count = shoppingCart.Count,
                     Price = shoppingCart.MenuItem.Price,
-                    Description = shoppingCart.MenuItem.Description
+                    Description = shoppingCart.MenuItem.Description,
+                    OrderDate = DateTime.Now
                 };
 
                 OrderDetailsCartVM.OrderHeader.OrderTotal += (orderDetail.Count * orderDetail.Price);

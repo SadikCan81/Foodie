@@ -19,6 +19,9 @@ namespace Foodie.DataAccess.Data.Repository
             ShoppingCart = new ShoppingCartRepository(_db);
             OrderHeader = new OrderHeaderRepository(_db);
             OrderDetail = new OrderDetailRepository(_db);
+            UnitType = new UnitTypeRepository(_db);
+            Inventory = new InventoryRepository(_db);
+            MenuItemInventory = new MenuItemInventoryRepository(_db);
         }
 
         public ICategoryRepository Category { get; private set; }
@@ -34,6 +37,12 @@ namespace Foodie.DataAccess.Data.Repository
         public IOrderHeaderRepository OrderHeader { get; private set; }
         
         public IOrderDetailRepository OrderDetail { get; private set; }
+
+        public IUnitTypeRepository UnitType { get; private set; }
+
+        public IInventoryRepository Inventory { get; private set; }
+
+        public IMenuItemInventoryRepository MenuItemInventory { get; private set; }
 
         public void Dispose()
         {
